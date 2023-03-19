@@ -1,11 +1,12 @@
 package richard.springframework.spring6di.controllers;
 
-import org.springframework.stereotype.Controller;
 import richard.springframework.spring6di.services.GreetingService;
 import richard.springframework.spring6di.services.GreetingServiceImpl;
+import org.springframework.stereotype.Controller;
 
 @Controller
 public class MyController {
+
     private final GreetingService greetingService;
 
     public MyController() {
@@ -13,7 +14,16 @@ public class MyController {
     }
 
     public String sayHello() {
-        System.out.println("I am in the Controller");
+        System.out.println("I'm in the controller");
+
         return greetingService.sayGreeting();
+    }
+
+    public void beforeInit() {
+        System.out.println("## - Before Init - Called by Bean Post Processor");
+    }
+
+    public void afterInit() {
+        System.out.println("## - After init called by Bean Post Processor");
     }
 }
